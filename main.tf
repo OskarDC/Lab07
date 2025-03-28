@@ -28,3 +28,6 @@ provider "azuread" {
 provider "github" {
   token = "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"
 }
+
+data "azuread_client_config" "current" {}
+data "azurerm_client_config" "current" {}

@@ -1,8 +1,8 @@
-# resource "github_actions_secret" "declerck-as-client-id" {
-#     repository = "Lab07-minimal-api-deployment"
-#     secret_name = "AZURE_CLIENT_ID"
-#     plaintext_value = azuread_application.declerck-app.client_id
-# }
+resource "github_actions_secret" "declerck-as-client-id" {
+    repository = "Lab07-minimal-api-deployment"
+    secret_name = "AZURE_CLIENT_ID_${terraform.workspace}"
+    plaintext_value = azuread_application.declerck-app.client_id
+}
 
 resource "github_actions_secret" "declerck-as-subscription-id" {
     repository = "Lab07-minimal-api-deployment"

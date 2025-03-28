@@ -1,7 +1,3 @@
-data "azuread_client_config" "current" {}
-data "azurerm_client_config" "current" {}
-
-
 resource "azuread_application" "declerck-app" {
   display_name = "Lab07-app"
   owners = [data.azuread_client_config.current.object_id]
@@ -26,19 +22,4 @@ resource "azuread_application_federated_identity_credential" "github-actions" {
   audiences            = ["api://AzureADTokenExchange"]
   issuer               = "https://token.actions.githubusercontent.com"
   subject              = "repo:${var.github_repo}:ref:refs/heads/${var.github_branch}"
-}
-
-output "azure_client_id" {
-  value       = azuread_application.declerck-app.client_id
-  description = "The Client ID of the Azure AD Application"
-}
-
-output "azure_tenant_id" {
-  value       = data.azurerm_client_config.current.tenant_id
-  description = "The Tenant ID of the Azure account"
-}
-
-output "azure_subscription_id" {
-  value       = data.azurerm_client_config.current.subscription_id
-  description = "The Subscription ID of the Azure account"
 }
